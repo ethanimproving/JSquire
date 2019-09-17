@@ -71,6 +71,19 @@ public abstract class StringKihonBase {
         // Assert
         assertEquals("Hello World!", actual);
     }
+
+    @Test
+    public void Determine_The_Length_Of_A_String()
+    {
+        // Arrange
+        String input = "1234567";
+
+        // Act
+        String actual = Determine_The_Length_Of_A_String(input);
+
+        // Assert
+        assertEquals(7, actual);
+    }
     
     @Test
     public void determineThePositionOfAInB()
