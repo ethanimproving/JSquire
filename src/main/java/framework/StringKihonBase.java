@@ -45,6 +45,32 @@ public abstract class StringKihonBase {
         // Assert
         assertEquals(data.toLowerCase(), actual);
     }
+
+    @Test
+    public void Combine_Parts_Of_A_Name()
+    {
+        // Arrange
+
+        // Act
+        String actual = Combine_Parts_Of_A_Name("Ethan","Mark", "Miller");
+
+        // Assert
+        assertEquals("Ethan Mark Miller", actual);
+    }
+
+    @Test
+    public void Combine_Two_Strings()
+    {
+        // Arrange
+        String a = "Hello ";
+        String b = "World!";
+
+        // Act
+        String actual = Combine_Two_Strings(a,b);
+
+        // Assert
+        assertEquals("Hello World!", actual);
+    }
     
     @Test
     public void determineThePositionOfAInB()
