@@ -111,7 +111,7 @@ public abstract class StringKihonBase {
         String actual = combinePartsOfAName(firstName,middleName,lastName);
 
         // Assert
-        assertEquals(String.format("{0} {1} {2}",firstName,middleName,lastName), actual);
+        assertEquals(String.format("%s %s %s",firstName,middleName,lastName), actual);
     }
 
 
