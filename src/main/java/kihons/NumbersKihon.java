@@ -7,36 +7,36 @@ public class NumbersKihon extends NumbersKihonBase {
 
     @Override
     protected int returnTheMaximumValueOfInt() {
-        throw new NotImplementedYetException();
+        return Integer.MAX_VALUE;
     }
 
     @Override
     protected int returnTheMinimumValueOfInt() {
-        throw new NotImplementedYetException();
+        return Integer.MIN_VALUE;
     }
 
     @Override
     protected int returnTheRemainderOfADividedByB(int a, int b) {
-        throw new NotImplementedYetException();
+        return a % b;
     }
 
     @Override
     protected double returnTheMaximumValueOfDouble() {
-        throw new NotImplementedYetException();
+        return Double.MAX_VALUE;
     }
 
     @Override
     protected double returnTheMinimumValueOfDouble() {
-        throw new NotImplementedYetException();
+        return Double.MIN_VALUE;
     }
 
     @Override
     protected boolean returnTrueIfAIsNotANumber(double a) {
-        throw new NotImplementedYetException();
+        return Double.isNaN(a);
     }
 
     @Override
     protected boolean returnTrueIfAIsAnInfinite(double a) {
-        throw new NotImplementedYetException();
+        return Double.isInfinite(a);
     }
 }
