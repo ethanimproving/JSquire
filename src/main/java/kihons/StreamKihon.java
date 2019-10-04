@@ -19,28 +19,30 @@ public class StreamKihon extends StreamsKihonBase {
 
     @Override
     protected List<Item> sortItemsAlphabeticallyBasedOnName(List<Item> items) {
-        return items.stream().sorted(Comparator.comparing(s -> s.getName())).collect(Collectors.toList());
+        return items.stream().sorted(Comparator.comparing(Item::getName))
+                .collect(Collectors.toList());
     }
 
     @Override
     protected List<Item> sortOnCostFromLestToMostExpensiveAllItemsThatCostLessThanOrEqualToMyMonies(List<Item> items, int monies) {
-        throw new NotImplementedYetException();
+        return items.stream()
+                .filter(i -> i.getCost() <= monies)
+                .sorted(Comparator.comparing(Item::getCost))
+                .collect(Collectors.toList());
     }
 
     @Override
     protected Item getTheItemWithTheMostCost(List<Item> items) {
-        return items.stream().max(Comparator.comparing(s -> s.getCost())).get();
+        return items.stream().max(Comparator.comparing(Item::getCost)).orElseThrow();
     }
 
     @Override
     protected int getTheAverageCostRoundedDown(List<Item> items) {
-        return (int)items.stream().mapToInt((s) -> s.getCost()).summaryStatistics().getAverage();
+        return items.stream().mapToInt(x -> x.getCost()).sum() / items.size();
     }
 
     @Override
     protected void addAllItemsToMyMapWIthKetNameAndValueOfCost(List<Item> items, Map<String, Integer> myMap) {
-        items.stream().collect(Collectors.toMap(Function.identity(), s -> {
-            return s;
-        }));
+        items.stream().forEach(e -> myMap.put(e.getName(), e.getCost()));
     }
 }
