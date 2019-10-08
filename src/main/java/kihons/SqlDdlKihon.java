@@ -5,12 +5,13 @@ import framework.bases.SqlDdlKihonBase;
 public class SqlDdlKihon extends SqlDdlKihonBase {
     @Override
     public String createTablePersonWithOneColumn() {
+        var sb = new StringBuilder();
 
-        String ct = "CREATE TABLE Person" +
-                     "(" +
-                     "PersonId int not null PRIMARY KEY " +
-                     ")";
+        sb.append("CREATE TABLE Person");
+        sb.append("(");
+        sb.append("PersonId int not null PRIMARY KEY ");
+        sb.append(")");
 
-        return ct;
+        return sb.toString();
     }
 }
