@@ -29,6 +29,23 @@ public abstract class DataTypeBase {
         Assertions.assertTrue(checkIfObjectReferencesAreIdentical(string1, string1));
     }
 
+    /**
+     * Strings go inside something called the "String pool." if you have 2 strings
+     * created which are the same, Java will store the reference to an
+     * existing one in that variable.
+     */
+    @Test
+    public void checkThatTwoEqualStringsShareTheSameReferenceInTheJavaStringPool() {
+        // Arrange
+        String string1 = "This object lives in the String Pool.";
+        String string2 = "This object lives in the String Pool.";
+        String string3 = "This object has a different reference.";
+
+        // Assert
+        Assertions.assertTrue(checkIfObjectReferencesAreIdentical(string1, string2));
+        Assertions.assertFalse(checkIfObjectReferencesAreIdentical(string1, string3));
+    }
+
     @Test
     public void checkIfObjectValuesAreEqualTest() {
         // Arrange
