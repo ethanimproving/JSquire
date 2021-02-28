@@ -22,4 +22,17 @@ public class Item {
     public int getCost() {
         return cost;
     }
+
+    @Override
+    public int hashCode() {
+        return 31
+                + ((name == null) ? 0 : name.hashCode())
+                + ((description == null) ? 0 : description.hashCode())
+                + cost;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.toString() == obj.toString();
+    }
 }
