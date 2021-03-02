@@ -18,6 +18,16 @@ public class Reflect {
         }
     }
 
+    public static Object callMethodByName(String methodName, Object target) {
+        try {
+            Method method = target.getClass().getDeclaredMethod(methodName);
+            method.setAccessible(true);
+            return method.invoke(target);
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            throw new InjectorException(e);
+        }
+    }
+
     public static class InjectorException extends RuntimeException {
         public InjectorException(Exception e) {
             super(e);
