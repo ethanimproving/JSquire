@@ -38,4 +38,16 @@ public class Item {
     public boolean equals(Object obj) {
         return this.toString() == obj.toString();
     }
+
+    private void setName(String name) {
+        this.name = name;
+    }
+
+    private void setDescription(String description) {
+        this.description = description;
+    }
+
+    private void setCost(Integer cost) {
+        this.cost = cost;
+    }
 }

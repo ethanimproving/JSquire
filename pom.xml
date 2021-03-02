@@ -49,5 +49,13 @@
             <version>2.12.1</version>
         </dependency>
 
+        <!-- StringUtils -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.11</version>
+        </dependency>
+
+
     </dependencies>
 </project>
