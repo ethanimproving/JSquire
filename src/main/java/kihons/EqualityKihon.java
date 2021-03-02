@@ -1,10 +1,10 @@
 package kihons;
 
 import framework.Item;
-import framework.bases.DataTypeBase;
+import framework.bases.EqualityKihonBase;
 import framework.exceptions.NotImplementedYetException;
 
-public class DataTypeKihon extends DataTypeBase {
+public class EqualityKihon extends EqualityKihonBase {
 
     @Override
     protected boolean checkIfObjectReferencesAreIdentical(String string1, String string2) {

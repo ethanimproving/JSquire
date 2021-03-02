@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions;
  *
  * https://www.geeksforgeeks.org/difference-equals-method-java/
  */
-public abstract class DataTypeBase {
+public abstract class EqualityKihonBase {
 
     protected abstract boolean checkIfObjectReferencesAreIdentical(String string1, String string2);
     protected abstract boolean checkIfObjectValuesAreEqual(String string1, String string2);
@@ -30,7 +30,7 @@ public abstract class DataTypeBase {
     }
 
     /**
-     * Strings go inside something called the "String pool." if you have 2 strings
+     * Strings go inside something called the "String pool." If you have 2 strings
      * created which are the same, Java will store the reference to an
      * existing one in that variable.
      */

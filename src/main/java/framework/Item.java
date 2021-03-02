@@ -1,9 +1,12 @@
 package framework;
 
 public class Item {
-    private final String name;
-    private final String description;
-    private final int cost;
+    private String name;
+    private String description;
+    private int cost;
+
+    public Item() {
+    }
 
     public Item(String name, String description, int cost) {
         this.name = name;
