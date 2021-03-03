@@ -1,9 +1,9 @@
 package kihons;
 
-import framework.bases.StackMemoryKihonBase;
+import framework.bases.CallStackKihonBase;
 import framework.exceptions.NotImplementedYetException;
 
-public class StackMemoryKihon extends StackMemoryKihonBase {
+public class CallStackKihon extends CallStackKihonBase {
     @Override
     protected void dumpStackTrace() {
         throw new NotImplementedYetException();

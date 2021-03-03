@@ -8,8 +8,17 @@ import org.junit.jupiter.api.Assertions;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.Comparator;
 
-public abstract class StackMemoryKihonBase {
+/**
+ * Stack memory is allocated to an individual {@link Thread} and is basically a list of all the currently active methods.
+ *
+ * @see <a href="https://www.youtube.com/watch?v=Q2sFmqvpBe0">The Call Stack</a>
+ * @see <a href="https://www.youtube.com/watch?v=2IXxLqRU9Mc">Java Call Stack</a>
+ * @see <a href="https://www.youtube.com/watch?v=pkVREpwyrp0">Learn Java Programming - Exception Handling: The Call Stack</a>
+ */
+public abstract class CallStackKihonBase {
 
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalErr = System.err;
@@ -25,7 +34,7 @@ public abstract class StackMemoryKihonBase {
 
     @AfterEach
     public void afterEachTest() {
-        System.setOut(originalErr);
+        System.setErr(originalErr);
     }
 
     @Test
@@ -35,31 +44,41 @@ public abstract class StackMemoryKihonBase {
     }
 
     private String method1() {
-        System.out.println("method1");
+        printCallStack();
         String method2 = method2();
-        System.out.println("method1");
+        printCallStack();
         return method2;
     }
 
     private String method2() {
-        System.out.println("method1->method2");
+        printCallStack();
         String method3 = method3();
-        System.out.println("method1<-method2");
+        printCallStack();
         return method3;
     }
 
     private String method3() {
-        System.out.println("method1->method2->method3");
+        printCallStack();
         String method4 = method4();
-        System.out.println("method1<-method2<-method3");
+        printCallStack();
         return method4;
     }
 
     private String method4() {
-        System.out.println("method1->method2->method3->method4");
+        printCallStack();
         this.dumpStackTrace();
         System.out.println(errContent);
         return errContent.toString();
+    }
+
+    private void printCallStack() {
+        String callStack = Arrays.stream(Thread.currentThread().getStackTrace())
+                .filter(ste -> ste.getClassName().contains("CallStack"))
+                .map(StackTraceElement::getMethodName)
+                .filter(name -> !name.equals("printCallStack") && !name.equals("dumpStackTraceTest"))
+                .sorted(Comparator.comparing(Object::toString))
+                .reduce((accumulator, currentValue) -> String.format("%s->%s", accumulator, currentValue)).orElse("method1");
+        System.out.println(callStack);
     }
 
 }
