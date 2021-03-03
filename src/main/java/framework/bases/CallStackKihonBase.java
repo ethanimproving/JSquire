@@ -22,7 +22,7 @@ public abstract class CallStackKihonBase {
 
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalErr = System.err;
-    private final String STACKTRACE_REGEX = ".*at framework.bases.StackMemoryKihonBase.method\\d\\(StackMemoryKihonBase.java:\\d*\\).*";
+    private final String STACKTRACE_REGEX = ".*at framework.bases.CallStackKihonBase.method\\d\\(CallStackKihonBase.java:\\d*\\).*";
 
 
     protected abstract void dumpStackTrace();
@@ -34,7 +34,7 @@ public abstract class CallStackKihonBase {
 
     @AfterEach
     public void afterEachTest() {
-        System.setErr(originalErr);
+        System.setOut(originalErr);
     }
 
     @Test
@@ -44,28 +44,28 @@ public abstract class CallStackKihonBase {
     }
 
     private String method1() {
-        printCallStack();
+        System.out.println("method1");
         String method2 = method2();
-        printCallStack();
+        System.out.println("method1");
         return method2;
     }
 
     private String method2() {
-        printCallStack();
+        System.out.println("method1->method2");
         String method3 = method3();
-        printCallStack();
+        System.out.println("method1<-method2");
         return method3;
     }
 
     private String method3() {
-        printCallStack();
+        System.out.println("method1->method2->method3");
         String method4 = method4();
-        printCallStack();
+        System.out.println("method1<-method2<-method3");
         return method4;
     }
 
     private String method4() {
-        printCallStack();
+        System.out.println("method1->method2->method3->method4");
         this.dumpStackTrace();
         System.out.println(errContent);
         return errContent.toString();

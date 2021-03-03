@@ -15,6 +15,7 @@
 .idea/checkstyle-idea.xml
 .idea/codeStyles
 .idea
+*.iml
 
 # Generated files
 .idea/**/contentModel.xml
