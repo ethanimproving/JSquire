@@ -56,6 +56,11 @@
             <version>3.11</version>
         </dependency>
 
-
+        <!-- Automatic Getters and Setters -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.18</version>
+        </dependency>
     </dependencies>
 </project>
