@@ -31,6 +31,13 @@ public class ThreadKihonBase {
     }
 
     @Test
+    public void createNewThread() {
+        new Thread(() -> {
+            new Service1().process(new OrderRequest("n","desc",1));
+        });
+    }
+
+    @Test
     public void returnNewThreadPoolWithMaxOf2ConcurrentThreadsTest() {
         ExecutorService executorService = returnNewThreadPoolWithMaxOf2ConcurrentThreads();
         List<Future<String>> list = new ArrayList<>();
@@ -99,14 +106,22 @@ public class ThreadKihonBase {
     // Thread Local
     // ===================================================================================
 
-    class Service1 {
+    class Service1 implements Callable {
 
         Service2 service2 = new Service2();
+        Item item = null;
 
         public void process(OrderRequest orderRequest) {
             TransactionalDataContext context = TransactionalDataContextProvider.getInstance();
             context.setOrderRequest(orderRequest);
-            service2.process();
+            this.service2.process();
+            this.item = TransactionalDataContextProvider.getInstance().getOrderResponse().getOrderItemResponse();
+        }
+
+        @Override
+        public Object call() throws Exception {
+            Thread.sleep(1000);
+            return "Id: " + item;
         }
     }
 
